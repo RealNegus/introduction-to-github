@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    position: relative;
+    width: 400px;
+    height: 450px; /* Added fixed height */
+    perspective: 1000px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    transform-style: preserve-3d;
+    transition: all 0.6s ease;
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%; /* Make all cards fill container */
+    overflow-y: auto; /* Add scrolling for longer forms */
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.links {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.links a {
+    color: #667eea;
+    text-decoration: none;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.success-message, .error-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.back-btn {
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid #764ba2;
+    color: #764ba2;
+}
+
+.back-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+}
+
+.password-container {
+    position: relative;
+}

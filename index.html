@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div class="card" id="loginCard" style="display: block;">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" required>
+                        <span class="password-toggle" onclick="togglePassword('password')">Show</span>
+                    </div>
+                </div>
+                <button type="submit">Login</button>
+                <div class="success-message" id="loginSuccess">Login successful!</div>
+                <div class="error-message" id="loginError">Invalid email or password.</div>
+                <div class="links">
+                    <a onclick="showCard('signupCard')">Create Account</a>
+                    <a onclick="showCard('forgotCard')">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="card card-back" id="signupCard" style="display: none;">
+            <h2>Create Account</h2>
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="input-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="signupPassword">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="signupPassword" required>
+                        <span class="password-toggle" onclick="togglePassword('signupPassword')">Show</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-container">
+                        <input type="password" id="confirmPassword" required>
+                        <span class="password-toggle" onclick="togglePassword('confirmPassword')">Show</span>
+                    </div>
+                </div>
+                <button type="submit">Create Account</button>
+                <div class="success-message" id="signupSuccess">Account created successfully!</div>
+                <div class="error-message" id="signupError">Passwords don't match or email already exists.</div>
+                <button type="button" class="back-btn" onclick="showCard('loginCard')">Back to Login</button>
+            </form>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div class="card card-back" id="forgotCard" style="display: none;">
+            <h2>Reset Password</h2>
+            <form id="forgotForm">
+                <div class="input-group">
+                    <label for="forgotEmail">Email</label>
+                    <input type="email" id="forgotEmail" required>
+                </div>
+                <button type="submit">Send Reset Link</button>
+                <div class="success-message" id="forgotSuccess">Reset link sent to your email!</div>
+                <div class="error-message" id="forgotError">Email not found in our records.</div>
+                <button type="button" class="back-btn" onclick="showCard('loginCard')">Back to Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
