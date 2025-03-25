@@ -1,0 +1,117 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <random>
+#include <cctype>
+
+using namespace std;
+
+class PasswordGenerator {
+private:
+    string username;
+    string password;
+    random_device rd;
+    mt19937 gen{rd()};
+
+    // Generate a random special character
+    char getRandomSpecialChar() {
+        const string specialChars = "!@#$%^&*()-_=+[]{}?";
+        uniform_int_distribution<> dis(0, specialChars.length() - 1);
+        return specialChars[dis(gen)];
+    }
+
+    // Evaluate password strength
+    string assessPasswordStrength() {
+        int length = password.length();
+        if (length < 8) return "Very Weak";
+        if (length < 12) return "Weak";
+        if (length < 16) return "Medium";
+        if (length < 20) return "Strong";
+        return "Very Strong";
+    }
+
+public:
+    void generatePassword() {
+        string firstPart, secondPart, numberPart;
+
+        // Input first string
+        cout << "Enter first string (min 4 chars): ";
+        getline(cin, firstPart);
+        while (firstPart.length() < 4) {
+            cout << "String too short. Enter again: ";
+            getline(cin, firstPart);
+        }
+
+        // Input second string
+        cout << "Enter second string (min 4 chars): ";
+        getline(cin, secondPart);
+        while (secondPart.length() < 4 || secondPart == firstPart) {
+            if (secondPart.length() < 4) {
+                cout << "String too short. Enter again: ";
+            } else {
+                cout << "Strings cannot be the same. Enter again: ";
+            }
+            getline(cin, secondPart);
+        }
+
+        // Input number
+        cout << "Enter a number: ";
+        getline(cin, numberPart);
+        while (!all_of(numberPart.begin(), numberPart.end(), ::isdigit)) {
+            cout << "Invalid input. Enter a number: ";
+            getline(cin, numberPart);
+        }
+
+        // Combine inputs
+        password = firstPart + secondPart + numberPart;
+
+        // Add randomness
+        password += getRandomSpecialChar();
+
+        // Shuffle the password
+        shuffle(password.begin(), password.end(), gen);
+
+        // Randomly capitalize some characters
+        for (char& c : password) {
+            uniform_int_distribution<> dis(0, 1);
+            if (dis(gen)) {
+                c = toupper(c);
+            }
+        }
+    }
+
+    void setUsername() {
+        cout << "Enter username: ";
+        getline(cin, username);
+        
+        // Convert to lowercase
+        transform(username.begin(), username.end(), username.begin(), 
+                  [](unsigned char c){ return tolower(c); });
+    }
+
+    void displayAccountDetails() {
+        cout << "\n--- Account Details ---\n";
+        cout << "Username: " << username << endl;
+        cout << "Password: " << password << endl;
+        cout << "Password Length: " << password.length() << endl;
+        cout << "Password Strength: " << assessPasswordStrength() << endl;
+    }
+
+    void run() {
+        // Clear screen (simple method)
+        cout << "\033[2J\033[1;1H";
+
+        cout << "Password Generator\n";
+        cout << "=================\n\n";
+
+        setUsername();
+        generatePassword();
+        displayAccountDetails();
+    }
+};
+
+int main() {
+    PasswordGenerator generator;
+    generator.run();
+    return 0;
+}
