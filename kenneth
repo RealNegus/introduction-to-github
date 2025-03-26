@@ -1,0 +1,86 @@
+#include <iostream>
+#include <cstring> // For strlen, strcpy, strcat
+#include <cctype>  // For tolower, toupper
+using namespace std;
+
+// Function to convert a string to lowercase
+void strlwr(char* str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower(str[i]);
+    }
+}
+
+// Function to convert a string to uppercase
+void strupr(char* str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = toupper(str[i]);
+    }
+}
+
+// Function to reverse a string
+void strrev(char* str) {
+    int n = strlen(str);
+    for (int i = 0; i < n / 2; i++) {
+        swap(str[i], str[n - i - 1]);
+    }
+}
+
+int main() {
+    char username[20];
+    char part1[20], part2[20], password[60];
+    cout << "\t\t\t\t\t _________________\n";
+    cout << "\t\t\t\t\t|Account Generator|";
+    cout << "\n\t\t\t\t\t|_________________|\n";
+    cout << "\t\t\t\t\tEnter your username:";
+    cin >> username;
+    strlwr(username); // Convert username to lowercase
+
+    cout << "Enter first part of your password (more than 5 characters): ";
+    cin >> part1;
+    while (strlen(part1) <= 5) {
+        cout << "Please enter a string longer than 5 characters: ";
+        cin >> part1;
+    }
+
+    cout << "Enter second part of your password (more than 5 characters): ";
+    cin >> part2;
+    while (strlen(part2) <= 5) {
+        cout << "Please enter a string longer than 5 characters: ";
+        cin >> part2;
+    }
+
+    // Combine parts to create the password
+    strcpy(password, part1); // Copy first part to password
+    strcat(password, part2); // Concatenate second part to password
+
+    // Display the password before converting to uppercase
+    cout << "Password before conversion: " << password << endl;
+
+    strupr(password); // Convert password to uppercase
+
+    cout << "\nUsername: " << username << endl;
+    cout << "Generated Password: " << password << endl;
+    cout << "Password Length: " << strlen(password) << endl;
+
+    // Check password strength
+    cout << "Password Strength: ";
+    if (strlen(password) < 10) {
+        cout << "Weak" << endl;
+    } else if (strlen(password) < 15) {
+        cout << "Average" << endl;
+    } else {
+        cout << "Strong" << endl;
+    }
+
+    // Automatically print the reversed second part of the password
+    char reversedPart2[20];
+    strcpy(reversedPart2, part2); // Copy second part to a new variable
+    strrev(reversedPart2); // Reverse the second part
+    cout << "Reversed second part of the password: " << reversedPart2 << endl;
+
+    // Example of using strrev
+    strrev(password); // Reverse the password
+    cout << "Reversed Password: " << password << endl;
+
+    return 0;
+}
