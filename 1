@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class WeatherAdvisory {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Array to store temperatures for 3 days
+        int[] temperatures = new int[3];
+        
+        // Input temperatures for 3 days
+        System.out.println("ENTER TEMPERATURE FOR 3 DAYS:");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("DAY " + (i + 1) + ": ");
+            temperatures[i] = scanner.nextInt();
+        }
+        
+        System.out.println(); // Empty line for formatting
+        
+        // Display weather advisory
+        System.out.println("WEATHER ADVISORY");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("DAY " + (i + 1) + ": ");
+            
+            if (temperatures[i] > 35) {
+                System.out.println("> 35 C - TOO HOT STAY HYDRATED!");
+            } else if (temperatures[i] < 20) {
+                System.out.println("< 20 C - COLD DAY, WEAR WARM CLOTHES!");
+            } else {
+                System.out.println(temperatures[i] + " - 34 C - NORMAL WEATHER ENJOY YOUR DAY!");
+            }
+        }
+        
+        scanner.close();
+    }
+}
