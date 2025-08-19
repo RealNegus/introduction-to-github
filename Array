@@ -1,11 +1,13 @@
 package EXERCISE1;
 import java.util.Scanner;
+//header
 
-public class EXERCISE1 {
-	public static void main (String [] args) {
+public class EXERCISE1 { //class
+	public static void main (String [] args) { // method
 		int [] numbers = {10, 20, 30, 40, 50};
 		Scanner input = new Scanner (System.in);
 		
+		//statement
 		int choice;
 		
 		do {
@@ -14,19 +16,19 @@ public class EXERCISE1 {
 			System.out.println("1. Find an Element");
 			System.out.println("2. Get sum average ");
 			System.out.println("3. Exit ");
-			
+
 			System.out.println("Enter your choice: ");
 			choice = input.nextInt();
 			
 			switch (choice) {
 			case 1:
 				System.out.println("Enter number to find: ");
-					
 				int findNum = input.nextInt();
+				
 				boolean found = false;
 				for (int i = 0; i < numbers.length; i++) {
 					if (numbers[i] == findNum) {
-						System.out.println(findNum + "\nfound at index" + i + ".");
+						System.out.println(findNum + "\nfound at index " + i + ".");
 						found = true;
 						break;
 					}
