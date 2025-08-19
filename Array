@@ -26,13 +26,13 @@ public class EXERCISE1 {
 				boolean found = false;
 				for (int i = 0; i < numbers.length; i++) {
 					if (numbers[i] == findNum) {
-						System.out.println(findNum + "found at index" + i + ".");
+						System.out.println(findNum + "\nfound at index" + i + ".");
 						found = true;
 						break;
 					}
 				}
 				if (!found) {
-					System.out.println(findNum + "was not found in the array.");
+					System.out.println(findNum + "\nwas not found in the array.");
 				} break;
 			case 2:
 			System.out.println("1. Calculate Sum");
@@ -53,7 +53,7 @@ public class EXERCISE1 {
 			}
 			break;
 			case 3:
-				System.out.println("Exiting the program Goodbye");
+				System.out.println("Exiting the program. Goodbye");
 				break;
 				default:
 					System.out.println("Invalid choice. Please try again");
